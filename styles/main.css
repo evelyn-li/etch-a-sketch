@@ -22,3 +22,8 @@ main {
     height: calc(95vh / var(--grid-size));
     background-color: white;
 }
+
+button {
+    height: 10%;
+    margin-right: 10px;
+}
