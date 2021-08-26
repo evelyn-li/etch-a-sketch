@@ -14,7 +14,14 @@
 
 <body>
     <main>
-        <button id="clear">Clear</button>
+        <div class="controls">
+            <button id="clear">Clear</button>
+            <div class="slider">
+                <label for="grid-size">Grid Size: </label>
+                <input type="range" name="grid-size" id="grid-size" min="2"
+                    max="64" step="2" value="16">
+            </div>
+        </div>
         <div class="grid">
 
         </div>

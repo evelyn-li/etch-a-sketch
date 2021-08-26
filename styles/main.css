@@ -13,17 +13,27 @@ main {
     grid-template-rows: repeat(var(--grid-size), 1fr);
     grid-gap: 1px;
 
-    width: 700px;
+    width: 550px;
     background-color: black;
     border: 1px solid black;
 }
 
 .square {
-    height: calc(95vh / var(--grid-size));
+    padding-bottom: 100%;
     background-color: white;
 }
 
+.controls, .slider {
+    display: flex;
+    flex-direction: column;
+}
+
+.controls {
+    justify-content: center;
+}
+
 button {
-    height: 10%;
+    display: block;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
