@@ -1,11 +1,17 @@
 const grid = document.querySelector('.grid')
+const colorPicker = document.querySelector('input[type="color"]')
+const randomColorBtn = document.querySelector('#random-color')
 const clearBtn = document.querySelector('#clear')
 const slider = document.querySelector('input[type="range"]')
 
 let gridSize = 16
+let randomColor = false
 createGrid(gridSize)
 displayGridSize()
 
+randomColorBtn.addEventListener('click', function () {
+    randomColor = !randomColor
+})
 clearBtn.addEventListener('click', clearGrid)
 slider.addEventListener('input', displayGridSize)
 slider.addEventListener('change', changeGridSize)
@@ -42,5 +48,19 @@ function clearGrid() {
 }
 
 function changeColor() {
-    this.style.backgroundColor = 'black'
+    if (randomColor) {
+        this.style.backgroundColor = getRandomColor()
+    }
+    else {
+        this.style.backgroundColor = colorPicker.value
+    }
+}
+
+function getRandomColor() {
+    const rgbValues = []
+    for (let i = 0; i < 3; i++) {
+        rgbValues.push(Math.floor(Math.random() * 256))
+    }
+    const [r, g, b] = rgbValues
+    return `rgb(${r}, ${g}, ${b})`
 }

@@ -29,11 +29,6 @@ main {
 }
 
 .controls {
-    justify-content: center;
-}
-
-button {
-    display: block;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    justify-content: space-around;
+    align-items: flex-start;
 }
