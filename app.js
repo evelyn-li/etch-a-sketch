@@ -4,19 +4,25 @@ const slider = document.querySelector('input[type="range"]')
 
 let gridSize = 16
 let penMode = 'custom-color'
-createGrid(gridSize)
-displayGridSize()
+start()
+let squares = document.querySelectorAll('.square')
 
-const penTools = document.querySelectorAll('.pen-tool')
-for (let tool of penTools) {
-    tool.addEventListener('click', function () {
-        penMode = tool.dataset.name
-    })
+
+function start() {
+    createGrid(gridSize)
+    displayGridSize()
+
+    const penTools = document.querySelectorAll('.pen-tool')
+    for (let tool of penTools) {
+        tool.addEventListener('click', function () {
+            penMode = tool.dataset.name
+        })
+    }
+
+    clearBtn.addEventListener('click', clearGrid)
+    slider.addEventListener('input', displayGridSize)
+    slider.addEventListener('change', changeGridSize)
 }
-
-clearBtn.addEventListener('click', clearGrid)
-slider.addEventListener('input', displayGridSize)
-slider.addEventListener('change', changeGridSize)
 
 function createGrid(size) {
     document.documentElement.style.setProperty('--grid-size', size)
@@ -30,12 +36,12 @@ function createGrid(size) {
 }
 
 function changeGridSize() {
-    gridSize = slider.value
-    const squares = document.querySelectorAll('.square')
     for (let square of squares) {
         square.remove()
     }
+    gridSize = slider.value
     createGrid(gridSize)
+    squares = document.querySelectorAll('.square')
 }
 
 function displayGridSize() {
@@ -44,7 +50,6 @@ function displayGridSize() {
 }
 
 function clearGrid() {
-    const squares = document.querySelectorAll('.square')
     for (let square of squares) {
         square.style.backgroundColor = ''
     }
@@ -61,10 +66,8 @@ function changeColor() {
 }
 
 function getRandomColor() {
-    const rgbValues = []
-    for (let i = 0; i < 3; i++) {
-        rgbValues.push(Math.floor(Math.random() * 256))
-    }
-    const [r, g, b] = rgbValues
+    const r = Math.floor(Math.random() * 256)
+    const g = Math.floor(Math.random() * 256)
+    const b = Math.floor(Math.random() * 256)
     return `rgb(${r}, ${g}, ${b})`
 }
