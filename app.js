@@ -1,17 +1,19 @@
 const grid = document.querySelector('.grid')
-const colorPicker = document.querySelector('input[type="color"]')
-const randomColorBtn = document.querySelector('#random-color')
 const clearBtn = document.querySelector('#clear')
 const slider = document.querySelector('input[type="range"]')
 
 let gridSize = 16
-let randomColor = false
+let penMode = 'custom-color'
 createGrid(gridSize)
 displayGridSize()
 
-randomColorBtn.addEventListener('click', function () {
-    randomColor = !randomColor
-})
+const penTools = document.querySelectorAll('.pen-tool')
+for (let tool of penTools) {
+    tool.addEventListener('click', function () {
+        penMode = tool.dataset.name
+    })
+}
+
 clearBtn.addEventListener('click', clearGrid)
 slider.addEventListener('input', displayGridSize)
 slider.addEventListener('change', changeGridSize)
@@ -37,7 +39,8 @@ function changeGridSize() {
 }
 
 function displayGridSize() {
-    document.querySelector('label').textContent = `Grid Size: ${slider.value} x ${slider.value}`
+    const gridSizeDisplay = document.querySelector('label[for="grid-size"]')
+    gridSizeDisplay.textContent = `Grid Size: ${slider.value} x ${slider.value}`
 }
 
 function clearGrid() {
@@ -48,10 +51,11 @@ function clearGrid() {
 }
 
 function changeColor() {
-    if (randomColor) {
+    if (penMode === 'random-color') {
         this.style.backgroundColor = getRandomColor()
     }
     else {
+        const colorPicker = document.querySelector('input[type="color"]')
         this.style.backgroundColor = colorPicker.value
     }
 }
