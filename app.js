@@ -12,10 +12,10 @@ function start() {
     createGrid(gridSize)
     displayGridSize()
 
-    const penTools = document.querySelectorAll('.pen-tool')
-    for (let tool of penTools) {
-        tool.addEventListener('click', function () {
-            penMode = tool.dataset.name
+    const brushes = document.querySelectorAll('.brush')
+    for (let brush of brushes) {
+        brush.addEventListener('click', function () {
+            penMode = brush.dataset.name
         })
     }
 
@@ -58,6 +58,9 @@ function clearGrid() {
 function changeColor() {
     if (penMode === 'random-color') {
         this.style.backgroundColor = getRandomColor()
+    }
+    else if (penMode === 'eraser') {
+        this.style.backgroundColor = ''
     }
     else {
         const colorPicker = document.querySelector('input[type="color"]')
