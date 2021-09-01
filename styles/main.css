@@ -16,6 +16,7 @@ main {
     width: 550px;
     background-color: black;
     border: 1px solid black;
+    cursor: crosshair;
 }
 
 .square {

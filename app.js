@@ -4,11 +4,11 @@ const slider = document.querySelector('input[type="range"]')
 
 let gridSize = 16
 let penMode = 'custom-color'
-start()
+setUp()
 let squares = document.querySelectorAll('.square')
 
 
-function start() {
+function setUp() {
     createGrid(gridSize)
     displayGridSize()
 
@@ -27,11 +27,18 @@ function start() {
 function createGrid(size) {
     document.documentElement.style.setProperty('--grid-size', size)
 
+    // prevent "no-drop" cursor from showing up on some clicks
+    grid.addEventListener('mousedown', function (e) {
+        e.preventDefault()
+    })
+
     for (let i = 0; i < size * size; i++) {
         const square = document.createElement('div')
         square.classList.add('square')
         grid.appendChild(square)
-        square.addEventListener('mouseenter', changeColor)
+
+        square.addEventListener('mouseover', changeColor)
+        square.addEventListener('mousedown', changeColor)
     }
 }
 
@@ -55,16 +62,19 @@ function clearGrid() {
     }
 }
 
-function changeColor() {
-    if (penMode === 'random-color') {
-        this.style.backgroundColor = getRandomColor()
-    }
-    else if (penMode === 'eraser') {
-        this.style.backgroundColor = ''
-    }
-    else {
-        const colorPicker = document.querySelector('input[type="color"]')
-        this.style.backgroundColor = colorPicker.value
+// draw when mouse button is down
+function changeColor(event) {
+    if (event.buttons === 1) {
+        if (penMode === 'random-color') {
+            this.style.backgroundColor = getRandomColor()
+        }
+        else if (penMode === 'eraser') {
+            this.style.backgroundColor = ''
+        }
+        else {
+            const colorPicker = document.querySelector('input[type="color"]')
+            this.style.backgroundColor = colorPicker.value
+        }
     }
 }
 
