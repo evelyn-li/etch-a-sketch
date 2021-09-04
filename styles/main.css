@@ -5,23 +5,23 @@
 main {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(var(--grid-size), 1fr);
     grid-template-rows: repeat(var(--grid-size), 1fr);
-    grid-gap: 1px;
 
     width: 550px;
-    background-color: black;
-    border: 1px solid black;
     cursor: crosshair;
 }
 
 .square {
     padding-bottom: 100%;
     background-color: white;
+    outline: 1px solid black;
 }
 
 .controls, .slider {
@@ -32,4 +32,5 @@ main {
 .controls {
     justify-content: space-around;
     align-items: flex-start;
+    height: 100%;
 }
