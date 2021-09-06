@@ -15,12 +15,16 @@ main {
     grid-template-rows: repeat(var(--grid-size), 1fr);
 
     width: 550px;
+    margin-left: 50px;
     cursor: crosshair;
 }
 
 .square {
     padding-bottom: 100%;
     background-color: white;
+}
+
+.grid-lines {
     outline: 1px solid black;
 }
 
@@ -31,6 +35,6 @@ main {
 
 .controls {
     justify-content: space-around;
-    align-items: flex-start;
     height: 100%;
 }
+

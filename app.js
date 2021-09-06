@@ -1,9 +1,11 @@
 const grid = document.querySelector('.grid')
 const clearBtn = document.querySelector('#clear')
+const gridLinesSwitch = document.querySelector('#grid-lines')
 const slider = document.querySelector('input[type="range"]')
 
 let gridSize = 16
 let penMode = 'custom-color'
+let gridLinesOn = true
 setUp()
 let squares = document.querySelectorAll('.square')
 
@@ -20,6 +22,7 @@ function setUp() {
     }
 
     clearBtn.addEventListener('click', clearGrid)
+    gridLinesSwitch.addEventListener('change', toggleGridLines)
     slider.addEventListener('input', displayGridSize)
     slider.addEventListener('change', changeGridSize)
 }
@@ -39,6 +42,10 @@ function createGrid(size) {
 
         square.addEventListener('mouseover', changeColor)
         square.addEventListener('mousedown', changeColor)
+
+        if (gridLinesOn) {
+            square.classList.add('grid-lines')
+        }
     }
 }
 
@@ -54,6 +61,14 @@ function changeGridSize() {
 function displayGridSize() {
     const gridSizeDisplay = document.querySelector('label[for="grid-size"]')
     gridSizeDisplay.textContent = `Grid Size: ${slider.value} x ${slider.value}`
+}
+
+function toggleGridLines() {
+    gridLinesOn = !gridLinesOn
+    for (let square of squares) {
+        square.classList.toggle('grid-lines')
+    }
+    grid.classList.toggle('grid-lines')
 }
 
 function clearGrid() {
