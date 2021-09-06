@@ -1,4 +1,5 @@
 const grid = document.querySelector('.grid')
+const colorPicker = document.querySelector('#custom-color')
 const clearBtn = document.querySelector('#clear')
 const gridLinesSwitch = document.querySelector('#grid-lines')
 const slider = document.querySelector('input[type="range"]')
@@ -17,10 +18,13 @@ function setUp() {
     const brushes = document.querySelectorAll('.brush')
     for (let brush of brushes) {
         brush.addEventListener('click', function () {
+            document.querySelector('.active').classList.remove('active')
             penMode = brush.dataset.name
+            brush.classList.add('active')
         })
     }
 
+    colorPicker.classList.add('active')
     clearBtn.addEventListener('click', clearGrid)
     gridLinesSwitch.addEventListener('change', toggleGridLines)
     slider.addEventListener('input', displayGridSize)
@@ -90,7 +94,6 @@ function changeColor(event) {
             changeBackgroundColor()
         }
         else {
-            const colorPicker = document.querySelector('#custom-color')
             this.style.backgroundColor = colorPicker.value
         }
     }

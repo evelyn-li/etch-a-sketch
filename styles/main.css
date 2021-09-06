@@ -38,3 +38,6 @@ main {
     height: 100%;
 }
 
+.active {
+    background-color: aqua;
+}
