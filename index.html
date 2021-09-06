@@ -15,8 +15,17 @@
 <body>
     <main>
         <div class="controls">
-            <input type="color" class="brush" data-name="custom-color">
-            <button class="brush" data-name="random-color">Random
+            <div>
+                <label for="background-color">Background Color</label>
+                <input type="color" class="brush" data-name="background-color"
+                    id="background-color">
+            </div>
+            <div>
+                <label for="custom-color">Custom Pen Color</label>
+                <input type="color" class="brush" data-name="custom-color"
+                    id="custom-color">
+            </div>
+            <button class="brush" data-name="random-color">Random Pen
                 Color</button>
             <button class="brush" data-name="eraser">Eraser</button>
 

@@ -86,8 +86,11 @@ function changeColor(event) {
         else if (penMode === 'eraser') {
             this.style.backgroundColor = ''
         }
+        else if (penMode === 'background-color') {
+            changeBackgroundColor()
+        }
         else {
-            const colorPicker = document.querySelector('input[type="color"]')
+            const colorPicker = document.querySelector('#custom-color')
             this.style.backgroundColor = colorPicker.value
         }
     }
@@ -98,4 +101,13 @@ function getRandomColor() {
     const g = Math.floor(Math.random() * 256)
     const b = Math.floor(Math.random() * 256)
     return `rgb(${r}, ${g}, ${b})`
+}
+
+function changeBackgroundColor() {
+    const bgColorPicker = document.querySelector('#background-color')
+    for (let square of squares) {
+        if (!square.style.backgroundColor) {
+            square.style.backgroundColor = bgColorPicker.value
+        }
+    }
 }
